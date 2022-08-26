@@ -1,0 +1,36 @@
+= Sudoku puzzle solver
+
+This project shows how a Sudoku puzzle can be solved with a Java application.
+
+== Model representation
+
+A Sudoku puzzle is split into the following model classes
+
+* *Grid:* The `Grid` represents the whole puzzle to be solved.
+* *Row:* A row represents nine `Cell` from top to bottom of a `Grid`.
+* *Column:* A column represents nine `Cell` from top to bottom of a `Grid`.
+* *Block:* A block of 9 `Cell`.
+A `Block` is related to three `Row` and three `Column`.
+* *Cell:* A single `Cell` that can contain a value and has to be solved.
+* *Value:* A certain value a `Cell` can have (1-9).
+
+Please refer to https://en.wikipedia.org/wiki/Sudoku[Wikipedia] for more details.
+
+== Parsing puzzle
+
+The `App` class takes a random Sudoku puzzle, represented as `Integer[][]`.
+The `Grid` class parses that Integer array to the certain models.
+Each `Cell` of the puzzle is unique and will be set as a reference to the related `Row`, `Column` and `Block`.
+
+== Solving puzzle
+
+Currently, there are two solving strategies:
+
+* *OrderedCellSolvingStrategy:* This strategy walks each `Cell` of the grid from the top left to the bottom right and tries to solve the field by setting the first possible value.
+* *LeastPossibleValueStrategy:* This strategy looks for the `Cell` with the least possible value and tries to solve the field by setting the first possible value.
+
+=== Comparison of the two strategies
+
+Given the puzzle to develop this project (refer to the `App` class), the `LeastPossibleValueStrategy` is faster than the `OrderedCellSolvingStrategy` (98 steps compared to 622).
+As you know, the puzzle is harder to solve when fewer values are provided from the beginning.
+But there might be a state where there is no really difference between these strategies.
